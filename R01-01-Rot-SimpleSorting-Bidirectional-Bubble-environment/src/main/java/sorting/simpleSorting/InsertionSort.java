@@ -11,8 +11,23 @@ import sorting.AbstractSorting;
 public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
+
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not Implemented yet!");
+		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
+			return;
+		}
+
+		T key;
+		int j;
+		// Começa em 1 pq o primeiro já estar no lugar certo.
+		for (int i = leftIndex + 1; i <= rightIndex; i++) {
+			key = array[i];
+			j = i - 1;
+			while (j >= leftIndex && array[j].compareTo(key) > 0) {
+				array[j + 1] = array[j];
+				j--;
+			}
+			array[j + 1] = key;
+		}
 	}
 }
