@@ -1,6 +1,7 @@
 package sorting.simpleSorting;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * As the insertion sort algorithm iterates over the array, it makes the
@@ -13,21 +14,33 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 	@Override
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
-			return;
-		}
+		if(verification(array, leftIndex, rightIndex)){
+			this.insertion(array, leftIndex, rightIndex);
 
-		T key;
-		int j;
-		// Começa em 1 pq o primeiro já estar no lugar certo.
-		for (int i = leftIndex + 1; i <= rightIndex; i++) {
-			key = array[i];
-			j = i - 1;
-			while (j >= leftIndex && array[j].compareTo(key) > 0) {
-				array[j + 1] = array[j];
-				j--;
-			}
-			array[j + 1] = key;
 		}
+      }
+
+	private void insertion(T[] array, int leftIndex, int rightIndex) {
+		T key;
+		int i;
+		for(int j = leftIndex + 1; j <= rightIndex; j++){
+			key = array[j];
+			i = j - 1;
+			while(i >= 0 && array[i].compareTo(key) > 0){
+				array[i+1] = array[i];
+				i--;
+			}
+			array[i+1] = key;
+		} 
+
 	}
+
+	private boolean verification( T[] array, int leftIndex, int rightIndex){
+		boolean status = true; 
+		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
+			status = false;
+		}
+		return status;
+	}
+
 }
