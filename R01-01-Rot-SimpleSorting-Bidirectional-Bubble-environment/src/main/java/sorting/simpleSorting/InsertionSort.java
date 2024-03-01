@@ -14,29 +14,29 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 	@Override
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if(verification(array, leftIndex, rightIndex)){
+		if (verification(array, leftIndex, rightIndex)) {
 			this.insertion(array, leftIndex, rightIndex);
 
 		}
-      }
+	}
 
 	private void insertion(T[] array, int leftIndex, int rightIndex) {
 		T key;
 		int i;
-		for(int j = leftIndex + 1; j <= rightIndex; j++){
+		for (int j = leftIndex + 1; j <= rightIndex; j++) {
 			key = array[j];
 			i = j - 1;
-			while(i >= 0 && array[i].compareTo(key) > 0){
-				array[i+1] = array[i];
+			while (i >= 0 && array[i].compareTo(key) > 0) {
+				array[i + 1] = array[i];
 				i--;
 			}
-			array[i+1] = key;
-		} 
+			array[i + 1] = key;
+		}
 
 	}
 
-	private boolean verification( T[] array, int leftIndex, int rightIndex){
-		boolean status = true; 
+	private boolean verification(T[] array, int leftIndex, int rightIndex) {
+		boolean status = true;
 		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
 			status = false;
 		}

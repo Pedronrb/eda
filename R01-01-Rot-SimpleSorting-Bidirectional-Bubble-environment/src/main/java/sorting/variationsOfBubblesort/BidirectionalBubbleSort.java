@@ -14,7 +14,8 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends AbstractSo
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if(verification(array, leftIndex, rightIndex)){
+
+		if (verification(array, leftIndex, rightIndex)) {
 			this.BidirectionalBubbleSort(array, leftIndex, rightIndex);
 		}
 	}
@@ -22,18 +23,18 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends AbstractSo
 	private void BidirectionalBubbleSort(T[] array, int leftIndex, int rightIndex) {
 		boolean swapped = true;
 
-		while(swapped){
+		while (swapped) {
 			swapped = false;
 
 			for (int i = leftIndex; i < rightIndex; i++) {
-				if(array[i].compareTo(array[i+1]) > 0){
+				if (array[i].compareTo(array[i + 1]) > 0) {
 					Util.swap(array, i, i + 1);
 					swapped = true;
 				}
 			}
-			for(int j = rightIndex; j > leftIndex; j--){
-				if(array[j].compareTo(array[j-1]) < 0){
-					Util.swap(array, j, j-1);
+			for (int j = rightIndex; j > leftIndex; j--) {
+				if (array[j].compareTo(array[j - 1]) < 0) {
+					Util.swap(array, j, j - 1);
 					swapped = true;
 				}
 			}
@@ -42,7 +43,7 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends AbstractSo
 
 	private boolean verification(T[] array, int leftIndex, int rightIndex) {
 		boolean status = true;
-		if((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)){
+		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
 			status = false;
 		}
 		return status;

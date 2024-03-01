@@ -9,6 +9,10 @@ import org.junit.Test;
 import sorting.AbstractSorting;
 import sorting.simpleSorting.BubbleSort;
 import sorting.simpleSorting.InsertionSort;
+import sorting.simpleSorting.SelectionSort;
+import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
+import sorting.variationsOfBubblesort.RecursiveBubbleSort;
+import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
 
 public class StudentSortingTest {
 
@@ -38,8 +42,12 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
+		this.implementation = new SelectionSort<Integer>();
 		// this.implementation = new BubbleSort<Integer>();
-		this.implementation = new InsertionSort<Integer>();
+		// this.implementation = new InsertionSort<Integer>();
+		// this.implementation = new BidirectionalBubbleSort<Integer>();
+		// this.implementation = new RecursiveBubbleSort<Integer>();
+		// this.implementation = new RecursiveSelectionSort<Integer>();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
