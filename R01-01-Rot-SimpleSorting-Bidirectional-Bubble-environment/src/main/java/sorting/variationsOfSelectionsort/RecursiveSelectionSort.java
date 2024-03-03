@@ -15,11 +15,7 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
 	 * quadrática O(n^2).
 	 */
 	@Override
-	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (verification(array, leftIndex, rightIndex)) {
-			this.RecursiveSelectionSort(array, leftIndex, rightIndex);
-		}
-	}
+	public void 
 
 	private void RecursiveSelectionSort(T[] array, int leftIndex, int rightIndex) {
 		int posMenor = leftIndex;
