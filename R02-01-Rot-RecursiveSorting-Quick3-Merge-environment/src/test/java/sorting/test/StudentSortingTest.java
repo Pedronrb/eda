@@ -7,6 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
+import sorting.divideAndConquer.MergeSort;
+import sorting.divideAndConquer.QuickSort;
+import sorting.divideAndConquer.hybridMergesort.HybridMergeSort;
+import sorting.divideAndConquer.quicksort3.QuickSortMedianOfThree;
 
 public class StudentSortingTest {
 
@@ -36,10 +40,11 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
-		// null
-		this.implementation = null;
-		Assert.fail("Implementation not provided");
+		// this.implementation = new MergeSort<Integer>();
+		// this.implementation = new QuickSort<Integer>();
+		// this.implementation = new HybridMergeSort<Integer>();
+		this.implementation = new QuickSortMedianOfThree<Integer>();
+
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -66,8 +71,8 @@ public class StudentSortingTest {
 
 	public void genericTest(Integer[] array) {
 		Integer[] copy1 = {};
-		if(array.length > 0){
-			copy1 = Arrays.copyOf(array, array.length);			
+		if (array.length > 0) {
+			copy1 = Arrays.copyOf(array, array.length);
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);

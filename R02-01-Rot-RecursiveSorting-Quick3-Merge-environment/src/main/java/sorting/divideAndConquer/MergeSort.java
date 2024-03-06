@@ -12,49 +12,52 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= rightIndex) {
-			return;
-		} else {
 
-			int meio = (leftIndex + rightIndex) / 2;
-			sort(array, leftIndex, rightIndex);
-			sort(array, meio + 1, rightIndex);
-			merge(array, leftIndex, meio, rightIndex);
+		if ((leftIndex < 0 || leftIndex >= array.length) || (rightIndex < 0 || rightIndex >= array.length)) {
+			return;
+		}
+		if (rightIndex - leftIndex <= 0) {
+			return;
 		}
 
+		int middle = (leftIndex + rightIndex) / 2;
+
+		sort(array, leftIndex, middle);
+		sort(array, middle + 1, rightIndex);
+		marge(array, leftIndex, middle, rightIndex);
 	}
 
-	/*
-	 * public void merge(int[] array, int leftIndex, int middle, int rightIndex) {
-	 * int[] aux = new int[array.length];
-	 * 
-	 * for (int i = leftIndex; i <= rightIndex; i++) {
-	 * aux[i] = array[i];
-	 * }
-	 * 
-	 * int i = leftIndex;
-	 * int j = (leftIndex + rightIndex) / 2;
-	 * int k = leftIndex;
-	 * 
-	 * while (i <= j && j <= rightIndex) {
-	 * 
-	 * if (aux[i] <= aux[j]) {
-	 * array[k] = aux[i];
-	 * i++;
-	 * } else {
-	 * array[k] = aux[j];
-	 * j++;
-	 * }
-	 * k++;
-	 * 
-	 * }
-	 * // Caso um dos arrays acabem primeiro, append
-	 * while (i <= j) {
-	 * array[k] = aux[i];
-	 * i++;
-	 * k++;
-	 * }
-	 * }
-	 */
+	private void marge(T[] array, int leftIndex, int middle, int rightIndex) {
+		@SuppressWarnings("unchecked")
+		T[] arrayAux = (T[]) new Comparable[array.length];
+		for (int i = leftIndex; i <= rightIndex; i++) {
+			arrayAux[i] = array[i];
+		}
 
+		int i = leftIndex;
+		int j = middle + 1;
+		int indexResult = leftIndex;
+
+		while (i <= middle && j <= rightIndex) {
+			if (arrayAux[i].compareTo(arrayAux[j]) <= 0) {
+				array[indexResult] = arrayAux[i];
+				i++;
+			} else {
+				array[indexResult] = arrayAux[j];
+				j++;
+			}
+			indexResult++;
+		}
+
+		while (i <= middle) {
+			array[indexResult] = arrayAux[i];
+			i++;
+			indexResult++;
+		}
+		while (j <= rightIndex) {
+			array[indexResult] = arrayAux[j];
+			j++;
+			indexResult++;
+		}
+	}
 }
