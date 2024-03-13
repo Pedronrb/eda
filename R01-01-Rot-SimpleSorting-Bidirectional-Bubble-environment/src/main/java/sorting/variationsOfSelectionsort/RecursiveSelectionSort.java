@@ -16,13 +16,8 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
 	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (verification(array, leftIndex, rightIndex)) {
-			this.RecursiveSelectionSort(array, leftIndex, rightIndex);
-		}
-	}
-
-	private void RecursiveSelectionSort(T[] array, int leftIndex, int rightIndex) {
 		int posMenor = leftIndex;
+
 		for (int i = leftIndex + 1; i <= rightIndex; i++) {
 			if (array[i].compareTo(array[posMenor]) < 0) {
 				posMenor = i;
