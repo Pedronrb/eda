@@ -1,4 +1,5 @@
-package listaLigada;
+package tempoLinear;
+
 
 public class RadixSort {
     // Método para obter o valor máximo na array

@@ -1,4 +1,5 @@
-package listaLigada;
+package tempoLinear;
+
 
 public class CoutingSort {
 

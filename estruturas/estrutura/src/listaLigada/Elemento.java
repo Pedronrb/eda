@@ -1,5 +1,6 @@
 package listaLigada;
 
+
 public class Elemento {
     private String valor;
     private Elemento proximo;
