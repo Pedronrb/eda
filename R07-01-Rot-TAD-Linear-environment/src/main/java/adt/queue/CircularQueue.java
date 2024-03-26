@@ -9,61 +9,68 @@ public class CircularQueue<T> implements Queue<T> {
 
 	@SuppressWarnings("unchecked")
 	public CircularQueue(int size) {
-		array = (T[]) new Object[size];
-		head = -1;
-		tail = -1;
-		elements = 0;
+		this.array = (T[]) new Object[size];
+		this.head = -1;
+		this.tail = -1;
+		this.elements = 0;
 	}
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		if (isFull()) {
+		if (this.isFull()) {
 			throw new QueueOverflowException();
-		} 
-		if(isEmpty()){
-			head = 0;
+		}
+		if (element != null) {
+			if (this.isEmpty()) {
+				this.head = 0;
+				this.tail = 0;
+				this.array[0] = element;
+			} else {
+				this.tail = (this.tail + 1) % this.array.length;
+				this.array[this.tail] = element;
+			}
+
+			this.elements++;
 		}
 
-		tail = (tail + 1) % array.length;
-
-		array[tail] = element;
-		elements++;
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		if(isEmpty()){
+		if (this.isEmpty()) {
 			throw new QueueUnderflowException();
+
+		}
+		T dequeued = this.array[this.head];
+
+		if (this.head == this.tail) { //Só tem um elemento na fila
+			this.head = -1;
+			this.tail = -1;
+		} else {
+			this.head = ((this.head + 1) % this.array.length);
 		}
 
-		T element = array[head];
-
-		if (head == tail) {
-			head = tail = -1;
-
-		}else{
-			head = (head + 1) % array.length;
-		}
-		elements--;
-		return element;
+		this.elements--;
+		return dequeued;
 	}
 
 	@Override
-	public T head() throws QueueUnderflowException {
-		if(isEmpty()){
-			throw new QueueUnderflowException();
+	public T head() {
+		T head = null;
+		if (!this.isEmpty()) {
+			head = this.array[this.head];
 		}
-		return array[head];
+		return head;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return elements == 0;
+		return this.elements == 0;
 	}
 
 	@Override
 	public boolean isFull() {
-		return elements == array.length;
+		return this.elements == this.array.length;
 	}
 
 }
