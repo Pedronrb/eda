@@ -7,38 +7,45 @@ public class StackImpl<T> implements Stack<T> {
 
 	@SuppressWarnings("unchecked")
 	public StackImpl(int size) {
-		array = (T[]) new Object[size];
-		top = -1;
+		this.array = (T[]) new Object[size];
+		this.top = -1;
 	}
 
 	@Override
 	public T top() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T topo = null;
+		if (!this.isEmpty()) {
+			topo = this.array[this.top];
+		}
+		return topo;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.top == -1;
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return this.top == (array.length - 1);
 	}
 
 	@Override
 	public void push(T element) throws StackOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (this.isFull()) {
+			throw new StackOverflowException();
+		}
+		if (element != null) {
+			this.array[++this.top] = element; //array[+1]
+		}
 	}
 
 	@Override
 	public T pop() throws StackUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (this.isEmpty()) {
+			throw new StackUnderflowException();
+		}
+		return this.array[this.top--];
 	}
 
 }
