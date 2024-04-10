@@ -18,8 +18,8 @@ public class Elemento {
     public Elemento getProximo() {
         return proximo;
     }
-    public void setProximo(Elemento proximo) {
-        this.proximo = proximo;
+    public Elemento setProximo(Elemento proximo) {
+        return this.proximo = proximo;
     }
 
 }
